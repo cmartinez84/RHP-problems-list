@@ -1,0 +1,10 @@
+<div #panel style="height: 100%">
+  <table style="width:100%; height:100%" class="table-responsive table-bordered table-striped">
+    <tr>
+      <th *ngFor='let header of headers'>{{header}}</th>
+    </tr>
+    <tr *ngFor="let item of dataItems">
+      <td *ngFor='let element of generateArray(item)'>{{element}}</td>
+    </tr>
+  </table>
+</div>

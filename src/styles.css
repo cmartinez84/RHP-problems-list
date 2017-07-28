@@ -1,0 +1,245 @@
+@font-face {
+    font-family: trajan-pro;
+    src: url(assets/fonts/TrajanPro-Regular.otf);
+}
+
+@font-face {
+    font-family: friz;
+    src: url(assets/fonts/friz-regular.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  font-family: friz;
+}
+
+/*loading screen styles*/
+.loading-spinner {
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* panel style */
+.app-panel {
+  box-shadow: 0 0 4px;
+  background-color: white;
+  max-width: 100%;
+  min-width: 50px;
+  z-index: 0;
+}
+.app-panel .panel-heading span{
+  color: lightgray;
+}
+.resize-handle {
+  position: absolute;
+  top: calc(100% - 20px);
+  left: calc(100% - 20px);
+  width: 20px;
+  height: 20px;
+}
+.drag-handle {
+  overflow: hidden;
+}
+.app-panel-body {
+  overflow: auto;
+}
+.active-panel {
+  z-index: 1;
+}
+.active-panel .panel-heading {
+  font-weight: bold;
+}
+.active-panel .panel-heading span {
+  color: white;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+html.noscroll {
+  position: fixed;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+patient-select .patient-selector {
+  height: 70px;
+}
+.break {
+  display: none;
+}
+.patient-search-field {
+  float: right;
+  margin-left: 5px;
+}
+.patient-selector .nav {
+  height: 100%;
+  float: right;
+  margin-right: 35px;
+}
+@media screen and (max-width: 767px) {
+  patient-select .patient-selector {
+    height: 220px;
+  }
+  .break {
+    display: inline;
+  }
+  .patient-search-field {
+    float: left;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .patient-selector .nav {
+    height: 50px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}
+
+/* line-graph styles */
+.line-graph {
+  max-width: 800px;
+  height: 500px;
+  display: block;
+  margin: auto;
+}
+.line-graph h1 {
+  font-family: arial;
+  padding-left: 25px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-weight: normal;
+}
+#graph {
+  width: 100%;
+  height: 100%;
+}
+#legend text {
+  font-family: arial;
+  font-weight: bold;
+}
+#legend text:hover {
+  fill: blue;
+  cursor: pointer;
+}
+
+.out-of-range {
+  fill: #ddd;
+  stroke: black;
+}
+.in-range {
+  fill: #aaf;
+}
+
+.value-tooltip {
+  fill: #448;
+}
+.value-tooltip text {
+  fill: white;
+}
+
+.series-line {
+  stroke-width: 3;
+}
+.series-point {
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+
+
+.series0-line {
+  stroke: red;
+}
+.series0-point {
+  fill: darkred;
+  stroke: red;
+}
+
+.series1-line {
+  stroke: green;
+}
+.series1-point {
+  fill: #002800;
+  stroke: green;
+}
+
+.series2-line {
+  stroke: yellow;
+}
+.series2-point {
+  fill: #cc3;
+  stroke: yellow;
+}
+
+.series3-line {
+  stroke: blue;
+}
+.series3-point {
+  fill: darkblue;
+  stroke: blue;
+}
+
+.series4-line {
+  stroke: magenta;
+}
+.series4-point {
+  fill: darkmagenta;
+  stroke: magenta;
+}
+
+.series5-line {
+  stroke: orange;
+}
+.series5-point {
+  fill: #b70;
+  stroke: orange;
+}
+
+.series6-line {
+  stroke: gray;
+}
+.series6-point {
+  fill: #333;
+  stroke: gray;
+}
+
+
+/* wellness score styles */
+.wellness-column {
+  float: left;
+  width: 200px;
+}
+.wellness-progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: lightgray;
+  margin-bottom: 5px;
+}
+.wellness-progress-bar {
+  height: 100%;
+  background-color: cornflowerblue;
+}
+.wellness-label {
+  height: 25px;
+  text-align: right;
+  padding-right: 5px;
+}
+
+
+/* summary styles */
+.patient-photo {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  max-width: 160px;
+  max-height: 160px;
+}

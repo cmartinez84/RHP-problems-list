@@ -1,0 +1,107 @@
+{
+    "emrData": {
+        "problems": [
+            {
+                "problem": "Diabetes Type II",
+                "date": "Dec. 18, 2016",
+                "status": "Active"
+            },
+            {
+                "problem": "Hypertension",
+                "date": "Jan. 8, 2014",
+                "status": "Active"
+            }
+        ],
+        "medications": [
+            {
+                "name": "Atenolol 25 MG Oral Tablet",
+                "directions": "1 every 12 hours Orally",
+                "startDate": "Mar 18, 2012",
+                "status": "Active",
+                "indications": "Hypertension",
+                "fillInstructions": "-none-"
+            }
+        ],
+        "functionalAndCognitiveStatus": [
+            {
+                "assessment": "Functional Status",
+                "date": "August 15 2012, 5:32pm",
+                "results": "No impairment",
+                "commets": ""
+            },
+            {
+                "assessment": "Cognitive Status",
+                "date": "August 15 2012, 5:32pm",
+                "results": "No impairment",
+                "commets": ""
+            }
+        ],
+        "allergies": [
+            {
+                "allergen": "Penicillin G benzathine",
+                "reaction": "Hives",
+                "reactionSeverity": "Severe",
+                "documentationDate": "August 15 2012",
+                "startDate": "2010"
+            },
+            {
+                "allergen": "Codeine",
+                "reaction": "Nausea",
+                "reactionSeverity": "Mild to moderate",
+                "documentationDate": "August 15 2012",
+                "startDate": "2004"
+            }
+        ],
+        "immunizations": [
+            {
+                "vaccine": "Influenza Virus Vaccine",
+                "lotNumber": "15645",
+                "date": "8/15/2010",
+                "status": "Completed"
+            }
+        ],
+        "vitalSigns": [
+            {
+                "date": "1/15/2017",
+                "test": "Height",
+                "result": "70 in",
+                "details": ""
+            },
+            {
+                "date": "",
+                "test": "Weight",
+                "result": "195 lb",
+                "details": ""
+            },
+            {
+                "date": "",
+                "test": "BMI Calculated",
+                "result": "28",
+                "details": ""
+            },
+            {
+                "date": "",
+                "test": "BP Systolic",
+                "result": "155 mm[Hg]",
+                "details": ""
+            },
+            {
+                "date": "",
+                "test": "BP Diastolic",
+                "result": "92 mm[Hg]",
+                "details": ""
+            }
+        ],
+        "results": [
+            {
+                "result": "CO2",
+                "value": "27",
+                "units": "mmol/L",
+                "range": "23-29 mmol/L",
+                "date": "8/15/2012",
+                "Interpretation": "Normal"
+            }
+        ]
+
+    }
+}

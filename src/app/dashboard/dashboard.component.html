@@ -1,0 +1,23 @@
+<div class="header" [ngStyle]="{ 'overflow':'hidden' }">
+  <div class="container">
+    <div [ngStyle]="{ 'float':'left', 'margin-right':'15px' }">
+      <div class="logo">
+        <a href="#" (click)="menuShowing = !menuShowing" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-cog" id="gear"></b></a>
+      </div>
+    </div>
+    <div [ngStyle]="{ 'float':'left', 'overflow-x':'auto', 'width':'calc(100% - 50px)' }" id="menu">
+      <button class="btn btn-sm btn-primary {{c.location.nativeElement.parentNode.parentNode.className==='panel panel-primary app-panel active-panel' ? 'active' : ''}}
+                    {{c.location.nativeElement.parentNode.parentNode.style.display==='none' ? 'disabled' : ''}}"
+                    *ngFor="let c of childComponents; let i=index" (click)="showHidePanel(c.location.nativeElement.parentNode.parentNode, $event.target)" id="navBtns">
+        {{c.location.nativeElement.parentNode.parentNode.childNodes[0].childNodes[1].innerHTML}}
+      </button>
+    </div>
+  </div>
+</div>
+<div [ngStyle]="{ 'position':'relative' }">
+  <div class="slider" [ngStyle]="{ 'position':'absolute', 'max-height':menuShowing ? '800px' : '0',  'z-index':'2', 'box-shadow':'0 0 10px' }">
+    <app-selector (onSelect)="buildDash($event)"></app-selector>
+  </div>
+</div>
+<patient-select (onSelect)="choosePatient($event)"></patient-select>
+<div #mainDash id="mainDash" [ngStyle]="{ 'width': '100%', 'position':'relative' }"></div>

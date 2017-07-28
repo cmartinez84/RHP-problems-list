@@ -1,0 +1,98 @@
+[
+  {
+    "id" : 122,
+    "problem" : "Cough",
+    "onset" : "10-12-1987",
+    "active" : true,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "786.2"],
+    "resolved" : true,
+    "notes" : "pollen stress sulfites violence wisdom teeth. Addiction antibiotics arteries and veins autoimmunity cartilage chromosomes chronic dehydration depression enamel frenulum frostbite heredity hormone hormones influenza islet cells ketoacidosis lacrimal glands lymph oncologist pinna polyuria rescue"
+  },
+  {
+     "id" : 123,
+    "problem" : "Chest Pain",
+    "onset" : "10-12-1987",
+    "active" : true,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "786.59"],
+    "resolved" : true,
+    "notes" :"pollen stresshromosomes chronic dehydration depression enamel frenulum frostbite heredity hormone hormones  islet cells ketoacidosis lacrimal glands lymph oncologist pinna polyuria rescue "
+
+  },
+  {
+    "id" : 124,
+    "problem" : "Pneumonia",
+    "onset" : "09-12-1987",
+    "active" : false,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "481"],
+    "resolved" : true,
+    "notes" : "ehydration eardrum er exhale fats hematoma icu insulin injections junk food ketones nits nutrition occupational therapy polyuria social worker tonsille"
+
+  },
+  {
+    "id" : 125,
+    "problem" : "Headache",
+    "onset" : "08-12-1987",
+    "active" : true,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "339"],
+    "resolved" : true,
+    "notes": "ehydration eardrum  polyuria social worker tonsille"
+
+  },
+  {
+    "id" : 126,
+    "problem" : "Hypertension",
+    "onset" : "05-12-1983",
+    "active" : false,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "796.2"],
+    "resolved" : true,
+    "notes" : "tion antibiotics arteries and veins autoimmunity cartilage chromosomes chronic dehydration depression enamel frenulum frostbite heredity hormo"
+
+  },
+  {
+    "id" : 127,
+    "problem" : "UTI",
+    "onset" : "11-12-1984",
+    "active" : true,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "599.0"],
+    "resolved" : true,
+    "notes": "Allergy shots and immunotherapy blackhead bowels cast cerebellum dehydration eardrum er exhale fats hematoma icu insulin injections junk food ketones nits nutrition occupational therapy polyuria social worker tonsillectomy "
+
+  },
+  {
+    "id" : 128,
+    "problem" : "Diabetes",
+    "onset" : "11-12-1987",
+    "active" : false,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "250"],
+    "resolved" : true,
+    "notes" : "es. Allergist astigmatism blood glucose meter blood pressure carbohydrate cardiologist certified diabetes educators (cdes) constipation cont"
+
+  },
+  {
+    "id" : 129,
+    "problem" : "Colon Blockage",
+    "onset" : "11-12-1987",
+    "active" : true,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "560.9"],
+    "resolved" : false,
+    "notes" : " Allergist(cdes) constipation cont"
+  },
+  {
+    "id" : 130,
+    "problem" : "Fever",
+    "onset" : "11-12-1987",
+    "active" : true,
+    "cqm" : ["250", "250.10", "250.20"],
+    "medline" : [ "560.9"],
+    "resolved" : false,
+    "notes" : ""
+  }
+]

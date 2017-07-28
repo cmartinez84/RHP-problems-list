@@ -1,0 +1,12 @@
+{
+  "title": "Test App with Cat Fact",
+  "defaultWidth": 600,
+  "defaultHeight": 200,
+  "html": "<button id='get-fact'>Get a new Cat Fact</button><p>Patient Id is: <span id='patient-id-display'></span></p> <p>Cat Fact is: <span id='cat-fact-display'></span></p> <p id='width-p'>Width is: <span id='width-display'>600px</span></p>",
+  "init": "D3.select('#patient-id-display').text(Component.patientId); function getFact() { var xhttp = new XMLHttpRequest(); function func() { if (this.readyState == 4 && this.status == 200) { D3.select('#cat-fact-display').text(JSON.parse(this.responseText).facts[0]); } } xhttp.onreadystatechange = func; xhttp.open('GET', 'http://192.168.2.206/proxy.php?query='+encodeURIComponent('catfacts-api.appspot.com/api/facts'), true); xhttp.send(); } D3.select('#get-fact').on('click', function() { getFact(); }); getFact();",
+  "resize": "var para = D3.select('#width-p'); para.select('span').text(para.style('width'));",
+  "update": "",
+  "updateParameter": {
+    "patientId": "D3.select('#patient-id-display').text(Component.patientId);"
+  }
+}

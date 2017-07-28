@@ -1,0 +1,31 @@
+{ "recommendations": [{"recommended-order": "ciprofloxacin", "orderBy": "Jan. 25, 2017"},
+        {
+            "recommended-order": "ciprofloxacin",
+            "orderBy": "Jan. 21, 2017"
+        },
+        {
+            "recommended-order": "ciprofloxacin",
+            "orderBy": "Jan. 5, 2017"
+        },
+        {
+            "recommended-order": "ciprofloxacin",
+            "orderBy": "Dec. 28, 2016"
+        },
+        {
+            "recommended-order": "corticosteroids",
+            "orderBy": "Dec. 11, 2016"
+        },
+        {
+            "recommended-order": "corticosteroids",
+            "orderBy": "Nov. 22, 2016"
+        },
+        {
+            "recommended-order": "doxylamine and pyridoxine",
+            "orderBy": "Nov. 2, 2016"
+        },
+        {
+            "recommended-order": "doxylamine and pyridoxine",
+            "orderBy": "Oct. 25, 2016"
+        }
+    ]
+}

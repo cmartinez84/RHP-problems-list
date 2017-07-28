@@ -1,0 +1,197 @@
+<div>
+<!-- revert back to this opening div tag when done developing.  -->
+<!-- <div #panel [ngStyle]="{ 'width': '100%', 'height': '100%'}"> -->
+  <label>Active<input type="checkbox" name=""  [(ngModel)]='filterActive' (click)="triggerPipe()"></label>{{filterActive}}
+  <label>Ascending Order<input type="checkbox" [(ngModel)]='filterAscending' (click)="triggerPipe()"></label>
+  <label>Resolved<input type="checkbox" name="" [(ngModel)]='filterResolved' (click)="triggerPipe()"></label>
+  <table style="width:100%; height:100%" class="table-responsive table-bordered table-striped">
+  <tr>
+    <th>Onset</th>
+    <th>Active</th>
+    <th>Resolved</th>
+    <th>Problems</th>
+  </tr>
+  <tr *ngFor="let problemRow of problemList.indexedProblems | problemListFilter: filterActive: filterAscending: filterResolved: pipeTrigger" class="problemRow" [ngClass]="{'selectedProblem': selectedProblemId == problemRow.problem.id, 'hideProblem' : !problemRow.isParentRow && expandedProblemIds.indexOf(problemRow.expandWith) === -1, 'unsaved': problemRow.problem.saved === false || problemRow.problem.modified ===true}">
+    <td class="onsetDate">{{yyyymmdd(problemRow.problem.onsetDate)}}</td>
+    <td class="centerCheckBoxes activeResolved"><input type="checkbox" name="" [checked]="problemRow.problem.active" (click)="problemList.plSetActive(problemRow.problem.id); triggerPipe()"></td>
+    <td class="centerCheckBoxes activeResolved"> <input type="checkbox" name="" value="" [checked]="problemRow.problem.resolved" (click)="openModal('resolution'); preCheckResolution(problemRow.problem)">
+    </td>
+
+    <td (click)="clickProblem(problemRow.problem.id)"
+    [ngClass]="{'problemIndent' : !problemRow.hasChildren && problemRow.isParentRow, 'childIndent': problemRow.isParentRow === false}">
+    <!-- These two icon conditions cannot be combined in one ngClass. erorrs  -->
+    <i
+    [ngClass]="{'glyphicon glyphicon-chevron-down': problemRow.hasChildren && expandedProblemIds.indexOf(problemRow.problem.id) !== -1}"
+    (click)="disclosureHandleClicked(problemRow.problem.id)"
+    >
+    </i>
+    <i
+    [ngClass]="{'glyphicon glyphicon-chevron-right': problemRow.hasChildren && expandedProblemIds.indexOf(problemRow.problem.id) === -1}"
+    (click)="disclosureHandleClicked(problemRow.problem.id)"
+    >
+    </i>
+    {{problemRow.problem.name}}
+    <i  *ngIf="problemRow.problem.saved ===false" class="glyphicon glyphicon-remove removeX"(click)="removeProblem(problemRow.problem)"></i>
+      <div  class="problemRowButtons " *ngIf="selectedProblemId === problemRow.problem.id">
+        <!-- do we need a notes button?  notes modal still exists-->
+        <!-- <button class="notesButton" (click)="openModal('notes')" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></button> -->
+        <button class="notesButton" (click)="openModal('hx')" class="btn btn-warning">Hx</button>
+        <button  class="cqmButton" (click)="openModal('cqm'); getClinicalGuidelines(problemRow.cqm)" class="btn btn-success">CQM</button>
+        <button class="medlineButton" (click)="openModal('medline'); makeMedlineRequest(problemRow.problem.medline[0])"  class="btn btn-danger">Medline+</button>
+
+      </div>
+     </td>
+  </tr>
+</table>
+<div class="">
+    <input type="text" name="" value="" placeholder="Add New Problem" #newProblemNameInline>
+    <input type="date" name="" #onsetDateInline>
+    <span class="btn btn-success" (click)="submitNewProblem(newProblemNameInline.value, onsetDateInline.value); newProblemNameInline.value=''"><i class="glyphicon glyphicon-plus-sign"></i></span>
+
+</div>
+<div class="">
+  <span class="btn btn-success" (click)="saveAllChanges()">Save All Changes</span>
+  <span class="btn btn-danger" (click)="cancelAllChanges()">Cancel All Changes</span>
+  <small class="saveNotification">{{notifications}}</small>
+</div>
+</div>
+
+
+<!-- notes Modal -->
+<div class="modal" *ngIf="selectedModal ==='notes'" >
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()"  >&times;</span>
+    <h1>Notes</h1>
+    <div *ngIf="selectedProblemId">
+      <p>{{problemList.indexedProblems[selectedProblemId].notes}}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Hx Modal -->
+<div  class="modal" *ngIf="selectedModal==='hx'" >
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()"  >&times;</span>
+    <h1>History of Problem</h1>
+    <ul *ngIf="selectedProblemId"  class="hxLines">
+      <li><span class="icd9Hx">250.34</span> {{yyyymmdd(problemList.indexedProblems[selectedProblemId].onsetDate)}}/{{problemList.indexedProblems[selectedProblemId].name}} /   Dr. TJ Eckleberg / Providence</li>
+      <li><span class="icd9Hx">250.34</span> {{yyyymmdd(problemList.indexedProblems[selectedProblemId].onsetDate)}}/{{problemList.indexedProblems[selectedProblemId].name}} /   Dr. Wellington Yueh / Providence</li>
+      <li><span class="icd9Hx">250.34</span> {{yyyymmdd(problemList.indexedProblems[selectedProblemId].onsetDate)}}/{{problemList.indexedProblems[selectedProblemId].name}} /   Dr. TJ Eckleberg / Legacy</li>
+      <li><span class="icd9Hx">250.34</span> {{yyyymmdd(problemList.indexedProblems[selectedProblemId].onsetDate)}}/{{problemList.indexedProblems[selectedProblemId].name}} /   Dr. TJ Eckleberg / Emmanuel</li>
+    </ul>
+    <textarea name="name" rows="8" cols="80" ></textarea>
+  </div>
+</div>
+
+<!-- medline Plus -->
+<div class="modal" *ngIf="selectedModal === 'medline'" >
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h1>{{medlineTitle}}</h1>
+    <div id="medlineDiv">
+    </div>
+  </div>
+</div>
+
+<!-- clinical guidelines -->
+<div class="modal" *ngIf="selectedModal==='cqm'" >
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h1>Clinical Guidelines</h1>
+    <div class="container guidelineModal">
+      <div class="col-sm-2">
+        <span class="cgButton btn btn-info"(click)="loadGuideline(null)">Home</span>
+        <div *ngIf="cgFormatted">
+          <span class="cgButton btn btn-info"[ngClass]="{'active': selectedGuideline === guideline[0].code}" *ngFor="let guideline of cgFormatted" (click)="loadGuideline(guideline[0].code)">{{guideline[0].code}}</span>
+
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div *ngIf="selectedGuideline">
+          <div *ngFor="let guideline of cgFormatted">
+            <div *ngIf="selectedGuideline === guideline[0].code">
+              <h1>{{guideline[0].title}}</h1>
+              <p>{{guideline[0].body}} </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!selectedGuideline">
+          <div *ngIf="cgFormatted">
+            <ol >
+              <li *ngFor="let guideline of cgFormatted" class="cqmTitleHover" (click)="loadGuideline(guideline[0].code)">{{guideline[0].title}} {{guideline[0].code}}
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resolution Modal -->
+
+
+<div class="modal" *ngIf="selectedModal==='resolution'" >
+  <div class="modal-content">
+    <span class="close" (click)="closeModal(); cancelResolution()">&times;</span>
+    <div class="temporaryContainer">
+      <h1 *ngIf="selectedModal ==='newProblem'"> New</h1>
+      <h1 *ngIf="selectedModal ==='resolution'"> Resolution</h1>
+      <form class="" action="index.html" method="post">
+        <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">Problem</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="" id="example-text-input" #resolutionName>
+          </div>
+        </div>
+        <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">Onset</label>
+          <div class="col-10">
+            <input class="form-control" [ngModel]="todaysDate" type="date" #resolutionOnsetDate [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="form-group row">
+        </div>
+        <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">Search Patient Problems</label>
+          <div class="col-10">
+            <input  class="form-control" type="text" value="" id="example-text-input" [(ngModel)]="problemSearchTerm" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Search Results</label>
+          <div class="resolutionProblemContainer">
+            <h3 for="example-text-input" class="col-2 col-form-label">Resolves Problems</h3>
+              <label *ngFor="let problem  of problemList.indexedProblems | resolutionSearchFilter: null" class="problemCheckbox">
+                <span *ngIf="checkedProblems[problem.id]">
+                  <input type="checkbox" [(ngModel)]="checkedProblems[problem.id]" [ngModelOptions]="{standalone: true}"
+                  />
+                  <span>{{problem.name}}</span>
+                  <span *ngIf="problem.resolved">(resolved)</span>
+                </span>
+            </label>
+          </div>
+          <br>
+          <div class="resolutionProblemContainer">
+            <h3>Not In List</h3>
+              <label *ngFor="let problem of problemList.indexedProblems | resolutionSearchFilter: problemSearchTerm" class="problemCheckbox">
+                {{problem.problemId}}
+                <span *ngIf="!checkedProblems[problem.id]">
+                  <input type="checkbox" [(ngModel)]="checkedProblems[problem.id]" [ngModelOptions]="{standalone: true}"/>
+                  <span>{{problem.name}}</span>
+                  <span *ngIf="problem.resolved">(resolved)</span>
+                </span>
+            </label>
+          </div>
+          <div class="">
+            <h3>Notes</h3>
+            <textarea name="name" rows="8" cols="80" #newNotes></textarea>
+          </div>
+        </div>
+        <button type="button" name="button"><i class="glyphicon glyphicon-ice-lolly"></i></button>
+        <button class="btn btn-success" type="button" name="button" (click)="submitNewProblem(resolutionName.value, resolutionOnsetDate.value); closeModal()">Submit</button>
+        <button class="btn btn-danger" type="button" name="button"(click)="closeModal(); cancelResolution()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
